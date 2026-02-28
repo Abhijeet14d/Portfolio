@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Github, ExternalLink, Code, Server, Terminal } from "lucide-react"
+import { Github, ExternalLink, ArrowRight } from "lucide-react"
 import SectionHeading from "../components/SectionHeading"
 import chatAppImage from "../assets/quicktalk.png"
 import notesAppImage from "../assets/notesapp.png"
@@ -18,8 +18,7 @@ const Projects = () => {
     {
       id: 1,
       title: "QuickTalk",
-      description:
-        "A real-time chat application with private and group chat functionality, built using WebSocket technology.",
+      description: "Real-time chat application with private and group chat functionality using WebSocket technology.",
       image: chatAppImage,
       technologies: ["React", "Socket.IO", "Node.js", "Tailwind CSS"],
       category: ["frontend", "backend", "fullstack"],
@@ -29,8 +28,7 @@ const Projects = () => {
     {
       id: 2,
       title: "DoctorOnTime",
-      description:
-        "A doctor appointment booking platform that connects patients with healthcare professionals, allowing users to book appointments online.",
+      description: "Doctor appointment booking platform connecting patients with healthcare professionals.",
       image: docontimeImage,
       technologies: ["React", "Node.js", "Express", "MongoDB", "Stripe API"],
       category: ["frontend", "backend", "fullstack"],
@@ -40,7 +38,7 @@ const Projects = () => {
     {
       id: 3,
       title: "Note Taking App",
-      description: "A simple note-taking application that allows users to create, edit, and delete notes.",
+      description: "Simple note-taking application for creating, editing, and organizing notes efficiently.",
       image: notesAppImage,
       technologies: ["React", "Tailwind CSS", "Express", "MongoDB"],
       category: ["frontend", "backend", "fullstack"],
@@ -50,8 +48,7 @@ const Projects = () => {
     {
       id: 4,
       title: "Portfolio Website",
-      description:
-        "A personal portfolio website to showcase my projects, skills, and experience, with a responsive design.",
+      description: "Personal portfolio showcasing projects, skills, and experience with responsive design.",
       image: portfolioImage,
       technologies: ["React", "Tailwind CSS", "Framer Motion"],
       category: ["frontend"],
@@ -61,9 +58,9 @@ const Projects = () => {
     {
       id: 5,
       title: "Secure Login",
-      description: "An authentication system that allows users to securely log in and manage their accounts.",
+      description: "Authentication system for secure user login and account management.",
       image: secureLoginImage,
-      technologies: ["React", "Tailwind CSS", "Node.js", "Express", "MongoDB", "Chakra UI"],
+      technologies: ["React", "Node.js", "Express", "MongoDB", "Chakra UI"],
       category: ["frontend", "backend", "fullstack"],
       githubLink: "https://github.com/Abhijeet14d/SecureLogin",
       liveLink: "https://securelogin-8uzd.onrender.com/",
@@ -71,8 +68,7 @@ const Projects = () => {
     {
       id: 6,
       title: "Weather App",
-      description:
-        "A weather forecasting app that provides real-time weather updates and forecasts for any location using the OpenWeatherMap API.",
+      description: "Weather forecasting app providing real-time updates using OpenWeatherMap API.",
       image: weatherAppImage,
       technologies: ["React", "Tailwind CSS", "OpenWeatherMap API"],
       category: ["frontend"],
@@ -81,7 +77,16 @@ const Projects = () => {
     },
   ]
 
-  const filteredProjects = filter === "all" ? projects : projects.filter((project) => project.category.includes(filter))
+  const filters = [
+    { id: "all", label: "All" },
+    { id: "frontend", label: "Frontend" },
+    { id: "backend", label: "Backend" },
+    { id: "fullstack", label: "Full Stack" },
+  ]
+
+  const filteredProjects = filter === "all" 
+    ? projects 
+    : projects.filter((project) => project.category.includes(filter))
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -93,149 +98,134 @@ const Projects = () => {
           }
         })
       },
-      { threshold: 0.1 },
+      { threshold: 0.1 }
     )
 
     const projectItems = document.querySelectorAll(".project-card")
     projectItems.forEach((item) => observer.observe(item))
 
-    return () => {
-      projectItems.forEach((item) => observer.unobserve(item))
-    }
+    return () => projectItems.forEach((item) => observer.unobserve(item))
   }, [filteredProjects])
 
   return (
-    <div className="py-20 bg-white dark:bg-slate-900">
-      <div className="container mx-auto px-4">
-        <SectionHeading title="My Projects" subtitle="Check out some of my recent work" />
+    <section className="py-24 md:py-32 bg-neutral-50 dark:bg-neutral-950">
+      <div className="container mx-auto px-6 md:px-8">
+        <SectionHeading title="Projects" subtitle="Selected work and side projects" />
 
         {/* Filter buttons */}
-        <div className="flex flex-wrap justify-center gap-2 mb-12">
-        <button
-          onClick={() => setFilter("all")}
-          className={`px-5 py-2.5 rounded-xl text-sm font-semibold transition-all ${
-            filter === "all"
-              ? "bg-gradient-to-r from-emerald-600 via-blue-600 to-purple-600 text-white shadow-lg scale-105"
-              : "bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700"
-          }`}
-        >
-          All Projects
-        </button>
-        <button
-          onClick={() => setFilter("frontend")}
-          className={`px-5 py-2.5 rounded-xl text-sm font-semibold transition-all flex items-center gap-2 ${
-            filter === "frontend"
-              ? "bg-gradient-to-r from-emerald-600 via-blue-600 to-purple-600 text-white shadow-lg scale-105"
-              : "bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700"
-          }`}
-        >
-          <Code className="h-4 w-4" />
-          Frontend
-        </button>
-        <button
-          onClick={() => setFilter("backend")}
-          className={`px-5 py-2.5 rounded-xl text-sm font-semibold transition-all flex items-center gap-2 ${
-            filter === "backend"
-              ? "bg-gradient-to-r from-emerald-600 via-blue-600 to-purple-600 text-white shadow-lg scale-105"
-              : "bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700"
-          }`}
-        >
-          <Terminal className="h-4 w-4" />
-          Backend
-        </button>
-        <button
-          onClick={() => setFilter("fullstack")}
-          className={`px-5 py-2.5 rounded-xl text-sm font-semibold transition-all flex items-center gap-2 ${
-            filter === "fullstack"
-              ? "bg-gradient-to-r from-emerald-600 via-blue-600 to-purple-600 text-white shadow-lg scale-105"
-              : "bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700"
-          }`}
-        >
-          <Server className="h-4 w-4" />
-          Full Stack
-        </button>
-      </div>
-      </div>
+        <div className="flex flex-wrap justify-center gap-2 mb-16">
+          {filters.map(({ id, label }) => (
+            <button
+              key={id}
+              onClick={() => setFilter(id)}
+              className={`
+                px-5 py-2.5 text-sm font-medium transition-all duration-200
+                ${filter === id
+                  ? "bg-neutral-900 dark:bg-white text-white dark:text-neutral-900"
+                  : "bg-white dark:bg-neutral-900 text-neutral-600 dark:text-neutral-400 border border-neutral-200 dark:border-neutral-700 hover:border-neutral-300 dark:hover:border-neutral-600 hover:text-neutral-900 dark:hover:text-white"
+                }
+              `}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {filteredProjects.map((project) => (
-          <div
-            key={project.id}
-            data-id={project.id}
-            className={`project-card group bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-lg border border-slate-100 dark:border-slate-700 transition-all duration-500 hover:shadow-xl ${
-              visibleProjects.includes(project.id) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-            }`}
-          >
-            <div className="relative overflow-hidden h-48">
-              <img
-                src={project.image || "/placeholder.svg"}
-                alt={project.title}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-between p-4">
-                <a
-                  href={project.githubLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-white/20 backdrop-blur-sm p-2 rounded-full text-white hover:bg-white/40 transition-colors"
-                  aria-label="View code on GitHub"
-                >
-                  <Github size={18} />
-                </a>
-                <a
-                  href={project.liveLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-white/20 backdrop-blur-sm p-2 rounded-full text-white hover:bg-white/40 transition-colors"
-                  aria-label="View live demo"
-                >
-                  <ExternalLink size={18} />
-                </a>
-              </div>
-            </div>
-
-            <div className="p-6">
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
-                {project.title}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 mb-4 line-clamp-3">{project.description}</p>
-
-              <div className="flex flex-wrap gap-2 mb-4">
-                {project.technologies.map((tech, index) => (
-                  <span
-                    key={index}
-                    className="text-xs px-2 py-1 rounded-full bg-slate-100 text-slate-800 dark:bg-slate-700 dark:text-slate-300"
+        {/* Projects Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+          {filteredProjects.map((project, index) => (
+            <article
+              key={project.id}
+              data-id={project.id}
+              className={`
+                project-card group bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 
+                hover:border-neutral-300 dark:hover:border-neutral-700 hover:shadow-medium
+                transition-all duration-300
+                ${visibleProjects.includes(project.id) 
+                  ? "opacity-100 translate-y-0" 
+                  : "opacity-0 translate-y-8"
+                }
+              `}
+              style={{ transitionDelay: `${index * 50}ms` }}
+            >
+              {/* Image */}
+              <div className="relative overflow-hidden aspect-video bg-neutral-100 dark:bg-neutral-800">
+                <img
+                  src={project.image || "/placeholder.svg"}
+                  alt={project.title}
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
+                />
+                {/* Hover overlay with links */}
+                <div className="absolute inset-0 bg-neutral-900/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
+                  <a
+                    href={project.githubLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 bg-white text-neutral-900 hover:bg-neutral-100 transition-colors"
+                    aria-label="View code"
                   >
-                    {tech}
-                  </span>
-                ))}
+                    <Github className="w-5 h-5" />
+                  </a>
+                  <a
+                    href={project.liveLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 bg-white text-neutral-900 hover:bg-neutral-100 transition-colors"
+                    aria-label="View live"
+                  >
+                    <ExternalLink className="w-5 h-5" />
+                  </a>
+                </div>
               </div>
 
-              <div className="flex justify-between pt-4 border-t border-slate-100 dark:border-slate-700">
-                <a
-                  href={project.githubLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors flex items-center gap-1 text-sm"
-                >
-                  <Github size={16} />
-                  <span>Source Code</span>
-                </a>
-                <a
-                  href={project.liveLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-slate-700 hover:text-sky-600 dark:text-slate-300 dark:hover:text-sky-400 transition-colors flex items-center gap-1 text-sm"
-                >
-                  <ExternalLink size={16} />
-                  <span>Live Demo</span>
-                </a>
+              {/* Content */}
+              <div className="p-6">
+                <h3 className="text-lg font-medium text-neutral-900 dark:text-white mb-2 group-hover:text-neutral-700 dark:group-hover:text-neutral-300 transition-colors">
+                  {project.title}
+                </h3>
+                <p className="text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed mb-4 line-clamp-2">
+                  {project.description}
+                </p>
+
+                {/* Technologies */}
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {project.technologies.slice(0, 4).map((tech, techIndex) => (
+                    <span
+                      key={techIndex}
+                      className="text-xs px-2 py-1 bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Actions */}
+                <div className="flex items-center justify-between pt-4 border-t border-neutral-100 dark:border-neutral-800">
+                  <a
+                    href={project.githubLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors flex items-center gap-1"
+                  >
+                    <Github className="w-4 h-4" />
+                    Code
+                  </a>
+                  <a
+                    href={project.liveLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-neutral-900 dark:text-white font-medium hover:text-neutral-600 dark:hover:text-neutral-300 transition-colors flex items-center gap-1 group/link"
+                  >
+                    View Project
+                    <ArrowRight className="w-4 h-4 transition-transform group-hover/link:translate-x-1" />
+                  </a>
+                </div>
               </div>
-            </div>
-          </div>
-        ))}
+            </article>
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   )
 }
 

@@ -1,268 +1,160 @@
 "use client"
 
 import { useState } from "react"
-import {
-  Code,
-  Terminal,
-  Server,
-  Database,
-  GitBranch,
-  Cpu,
-  Layers,
-  Workflow,
-  Lightbulb,
-  Users,
-  Clock,
-  Search,
-  CheckCircle,
-  Braces,
-  FileCode,
-  Globe,
-  Palette,
-  LayoutGrid,
-  Boxes,
-  Cog,
-  Cloud,
-  Webhook,
-  MessageSquare,
-  Briefcase,
-  Puzzle,
-  Zap,
-  BookOpen,
-} from "lucide-react"
+import { Terminal, Server, Users, Code, Database, GitBranch, Cloud, Palette, Clock, Lightbulb } from "lucide-react"
 import SectionHeading from "../components/SectionHeading"
 
 const Skills = () => {
   const [activeTab, setActiveTab] = useState("technical")
 
+  const tabs = [
+    { id: "technical", label: "Technical", icon: Terminal },
+    { id: "tools", label: "Tools", icon: Server },
+    { id: "soft", label: "Soft Skills", icon: Users },
+  ]
+
   const skillCategories = {
     technical: [
       {
         category: "Frontend Development",
-        icon: <Code className="h-6 w-6 text-amber-600 dark:text-amber-400" />,
-        skills: [
-          { name: "JavaScript", level: "Advanced", icon: <Braces /> },
-          { name: "React.js", level: "Advanced", icon: <Code /> },
-          { name: "HTML/CSS", level: "Advanced", icon: <FileCode /> },
-          { name: "Tailwind CSS", level: "Advanced", icon: <Palette /> },
-          { name: "Responsive Design", level: "Advanced", icon: <LayoutGrid /> },
-        ],
+        skills: ["JavaScript", "React.js", "HTML/CSS", "Tailwind CSS", "Responsive Design"],
       },
       {
         category: "Backend Development",
-        icon: <Terminal className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />,
-        skills: [
-          { name: "Node.js", level: "Advanced", icon: <Server /> },
-          { name: "Express.js", level: "Advanced", icon: <Webhook /> },
-          { name: "C++", level: "Advanced", icon: <Cpu /> },
-          { name: "MongoDB", level: "Intermediate", icon: <Database /> },
-          { name: "SQL", level: "Intermediate", icon: <Database /> },
-        ],
+        skills: ["Node.js", "Express.js", "C++", "MongoDB", "SQL"],
       },
       {
         category: "Other Technologies",
-        icon: <Boxes className="h-6 w-6 text-sky-600 dark:text-sky-400" />,
-        skills: [
-          { name: "RESTful APIs", level: "Advanced", icon: <Globe /> },
-          { name: "Socket.IO", level: "Intermediate", icon: <Webhook /> },
-          { name: "Authentication", level: "Advanced", icon: <CheckCircle /> },
-          { name: "State Management", level: "Advanced", icon: <Layers /> },
-          { name: "Testing", level: "Intermediate", icon: <Cog /> },
-        ],
+        skills: ["RESTful APIs", "Socket.IO", "Authentication", "State Management", "Testing"],
       },
     ],
     tools: [
       {
         category: "Development Tools",
-        icon: <Cog className="h-6 w-6 text-amber-600 dark:text-amber-400" />,
-        skills: [
-          { name: "Git & GitHub", level: "Advanced", icon: <GitBranch /> },
-          { name: "VS Code", level: "Advanced", icon: <Code /> },
-          { name: "Postman", level: "Advanced", icon: <Webhook /> },
-          { name: "Chrome DevTools", level: "Advanced", icon: <Cog /> },
-          { name: "npm/yarn", level: "Advanced", icon: <Boxes /> },
-        ],
+        skills: ["Git & GitHub", "VS Code", "Postman", "Chrome DevTools", "npm/yarn"],
       },
       {
         category: "DevOps & Deployment",
-        icon: <Server className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />,
-        skills: [
-          { name: "Docker", level: "Intermediate", icon: <Boxes /> },
-          { name: "Jenkins", level: "Intermediate", icon: <Workflow /> },
-          { name: "AWS", level: "Intermediate", icon: <Cloud /> },
-          { name: "Vercel", level: "Advanced", icon: <Zap /> },
-          { name: "Render", level: "Advanced", icon: <Globe /> },
-        ],
+        skills: ["Docker", "Jenkins", "AWS", "Vercel", "Render"],
       },
       {
         category: "Design & Collaboration",
-        icon: <Palette className="h-6 w-6 text-sky-600 dark:text-sky-400" />,
-        skills: [
-          { name: "Figma", level: "Intermediate", icon: <Palette /> },
-          { name: "Jira", level: "Intermediate", icon: <Briefcase /> },
-          { name: "Slack", level: "Advanced", icon: <MessageSquare /> },
-          { name: "Notion", level: "Intermediate", icon: <BookOpen /> },
-          { name: "Trello", level: "Advanced", icon: <LayoutGrid /> },
-        ],
+        skills: ["Figma", "Jira", "Slack", "Notion", "Trello"],
       },
     ],
     soft: [
       {
         category: "Problem Solving",
-        icon: <Lightbulb className="h-6 w-6 text-amber-600 dark:text-amber-400" />,
-        skills: [
-          { name: "Analytical Thinking", level: "Advanced", icon: <Search /> },
-          { name: "Debugging", level: "Advanced", icon: <Cog /> },
-          { name: "Algorithm Design", level: "Advanced", icon: <Workflow /> },
-          { name: "Research Skills", level: "Advanced", icon: <BookOpen /> },
-          { name: "Creative Solutions", level: "Advanced", icon: <Lightbulb /> },
-        ],
+        skills: ["Analytical Thinking", "Debugging", "Algorithm Design", "Research Skills", "Creative Solutions"],
       },
       {
         category: "Collaboration",
-        icon: <Users className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />,
-        skills: [
-          { name: "Team Communication", level: "Advanced", icon: <MessageSquare /> },
-          { name: "Pair Programming", level: "Advanced", icon: <Users /> },
-          { name: "Code Reviews", level: "Advanced", icon: <CheckCircle /> },
-          { name: "Knowledge Sharing", level: "Advanced", icon: <BookOpen /> },
-          { name: "Conflict Resolution", level: "Intermediate", icon: <Puzzle /> },
-        ],
+        skills: ["Team Communication", "Pair Programming", "Code Reviews", "Knowledge Sharing", "Conflict Resolution"],
       },
       {
         category: "Work Management",
-        icon: <Clock className="h-6 w-6 text-sky-600 dark:text-sky-400" />,
-        skills: [
-          { name: "Time Management", level: "Advanced", icon: <Clock /> },
-          { name: "Project Planning", level: "Advanced", icon: <Briefcase /> },
-          { name: "Adaptability", level: "Advanced", icon: <Workflow /> },
-          { name: "Attention to Detail", level: "Advanced", icon: <Search /> },
-          { name: "Self-Motivation", level: "Advanced", icon: <Zap /> },
-        ],
+        skills: ["Time Management", "Project Planning", "Adaptability", "Attention to Detail", "Self-Motivation"],
       },
     ],
   }
 
-  // Function to get level badge color
-  const getLevelColor = (level) => {
-    switch (level) {
-      case "Advanced":
-        return "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300"
-      case "Intermediate":
-        return "bg-sky-100 text-sky-800 dark:bg-sky-900/30 dark:text-sky-300"
-      case "Beginner":
-        return "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300"
-      default:
-        return "bg-slate-100 text-slate-800 dark:bg-slate-700 dark:text-slate-300"
-    }
+  const categoryIcons = {
+    "Frontend Development": Code,
+    "Backend Development": Terminal,
+    "Other Technologies": Database,
+    "Development Tools": GitBranch,
+    "DevOps & Deployment": Cloud,
+    "Design & Collaboration": Palette,
+    "Problem Solving": Lightbulb,
+    "Collaboration": Users,
+    "Work Management": Clock,
   }
 
   return (
-    <div className="py-20 bg-slate-50 dark:bg-slate-950">
-      <div className="container mx-auto px-4">
-        <SectionHeading title="My Skills" subtitle="Technologies and tools I work with" />
+    <section className="py-24 md:py-32 bg-white dark:bg-neutral-900">
+      <div className="container mx-auto px-6 md:px-8">
+        <SectionHeading title="Skills" subtitle="Technologies and tools I work with" />
 
         {/* Tab Navigation */}
-        <div className="mb-12 flex justify-center">
-        <div className="bg-white dark:bg-slate-800 p-2 rounded-2xl shadow-lg inline-flex flex-wrap justify-center">
-          <button
-            onClick={() => setActiveTab("technical")}
-            className={`px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-300 flex items-center gap-2 m-1 ${
-              activeTab === "technical"
-                ? "bg-gradient-to-r from-emerald-600 via-blue-600 to-purple-600 text-white shadow-lg scale-105"
-                : "text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700"
-            }`}
-          >
-            <Terminal className="h-4 w-4" />
-            Technical Skills
-          </button>
-          <button
-            onClick={() => setActiveTab("tools")}
-            className={`px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-300 flex items-center gap-2 m-1 ${
-              activeTab === "tools"
-                ? "bg-gradient-to-r from-emerald-600 via-blue-600 to-purple-600 text-white shadow-lg scale-105"
-                : "text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700"
-            }`}
-          >
-            <Server className="h-4 w-4" />
-            Tools & Platforms
-          </button>
-          <button
-            onClick={() => setActiveTab("soft")}
-            className={`px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-300 flex items-center gap-2 m-1 ${
-              activeTab === "soft"
-                ? "bg-gradient-to-r from-emerald-600 via-blue-600 to-purple-600 text-white shadow-lg scale-105"
-                : "text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700"
-            }`}
-          >
-            <Users className="h-4 w-4" />
-            Soft Skills
-          </button>
+        <div className="flex justify-center mb-16">
+          <div className="inline-flex border border-neutral-200 dark:border-neutral-700 p-1">
+            {tabs.map(({ id, label, icon: Icon }) => (
+              <button
+                key={id}
+                onClick={() => setActiveTab(id)}
+                className={`
+                  flex items-center gap-2 px-6 py-3 text-sm font-medium transition-all duration-200
+                  ${activeTab === id
+                    ? "bg-neutral-900 dark:bg-white text-white dark:text-neutral-900"
+                    : "text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-50 dark:hover:bg-neutral-800"
+                  }
+                `}
+              >
+                <Icon className="w-4 h-4" />
+                {label}
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
-      </div>
 
-      {/* Skills Content */}
-      <div className="space-y-12 max-w-5xl mx-auto">
-        {skillCategories[activeTab].map((category, categoryIndex) => (
-          <div key={categoryIndex} className="animate-fadeIn">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="bg-white dark:bg-slate-800 p-3 rounded-full shadow-md">{category.icon}</div>
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white">{category.category}</h3>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {category.skills.map((skill, skillIndex) => (
-                <div
-                  key={skillIndex}
-                  className="bg-white dark:bg-slate-800 rounded-xl p-5 shadow-md border border-slate-100 dark:border-slate-700 hover:shadow-lg transition-all duration-300 hover:translate-y-[-2px]"
-                >
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="text-slate-600 dark:text-slate-400">{skill.icon}</div>
-                    <h4 className="font-medium text-slate-900 dark:text-white">{skill.name}</h4>
+        {/* Skills Content */}
+        <div className="max-w-5xl mx-auto space-y-16">
+          {skillCategories[activeTab].map((category, categoryIndex) => {
+            const Icon = categoryIcons[category.category] || Code
+            return (
+              <div
+                key={categoryIndex}
+                className="animate-fade-in"
+                style={{ animationDelay: `${categoryIndex * 100}ms` }}
+              >
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="p-3 bg-neutral-100 dark:bg-neutral-800">
+                    <Icon className="w-5 h-5 text-neutral-600 dark:text-neutral-400" />
                   </div>
-                  <div className="flex justify-between items-center">
-                    <span className={`text-xs px-2 py-1 rounded-full ${getLevelColor(skill.level)}`}>
-                      {skill.level}
-                    </span>
-
-                    <div className="flex">
-                      {skill.level === "Advanced" && (
-                        <>
-                          <div className="w-2 h-2 rounded-full bg-emerald-500 dark:bg-emerald-400 mx-0.5"></div>
-                          <div className="w-2 h-2 rounded-full bg-emerald-500 dark:bg-emerald-400 mx-0.5"></div>
-                          <div className="w-2 h-2 rounded-full bg-emerald-500 dark:bg-emerald-400 mx-0.5"></div>
-                          <div className="w-2 h-2 rounded-full bg-emerald-500 dark:bg-emerald-400 mx-0.5"></div>
-                          <div className="w-2 h-2 rounded-full bg-emerald-500 dark:bg-emerald-400 mx-0.5"></div>
-                        </>
-                      )}
-                      {skill.level === "Intermediate" && (
-                        <>
-                          <div className="w-2 h-2 rounded-full bg-sky-500 dark:bg-sky-400 mx-0.5"></div>
-                          <div className="w-2 h-2 rounded-full bg-sky-500 dark:bg-sky-400 mx-0.5"></div>
-                          <div className="w-2 h-2 rounded-full bg-sky-500 dark:bg-sky-400 mx-0.5"></div>
-                          <div className="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-600 mx-0.5"></div>
-                          <div className="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-600 mx-0.5"></div>
-                        </>
-                      )}
-                      {skill.level === "Beginner" && (
-                        <>
-                          <div className="w-2 h-2 rounded-full bg-amber-500 dark:bg-amber-400 mx-0.5"></div>
-                          <div className="w-2 h-2 rounded-full bg-amber-500 dark:bg-amber-400 mx-0.5"></div>
-                          <div className="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-600 mx-0.5"></div>
-                          <div className="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-600 mx-0.5"></div>
-                          <div className="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-600 mx-0.5"></div>
-                        </>
-                      )}
-                    </div>
-                  </div>
+                  <h3 className="text-lg font-medium text-neutral-900 dark:text-white">{category.category}</h3>
+                  <div className="flex-1 h-px bg-neutral-100 dark:bg-neutral-800"></div>
                 </div>
-              ))}
+
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+                  {category.skills.map((skill, skillIndex) => (
+                    <div
+                      key={skillIndex}
+                      className="group p-4 bg-neutral-50 dark:bg-neutral-800 border border-transparent hover:border-neutral-200 dark:hover:border-neutral-700 hover:bg-white dark:hover:bg-neutral-800 hover:shadow-soft transition-all duration-200"
+                    >
+                      <span className="text-sm text-neutral-700 dark:text-neutral-300 group-hover:text-neutral-900 dark:group-hover:text-white">
+                        {skill}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )
+          })}
+        </div>
+
+        {/* Stats */}
+        <div className="mt-24 pt-16 border-t border-neutral-100 dark:border-neutral-800">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto text-center">
+            <div>
+              <div className="text-3xl md:text-4xl font-light text-neutral-900 dark:text-white mb-2">15+</div>
+              <div className="text-sm text-neutral-500 dark:text-neutral-400">Technologies</div>
+            </div>
+            <div>
+              <div className="text-3xl md:text-4xl font-light text-neutral-900 dark:text-white mb-2">10+</div>
+              <div className="text-sm text-neutral-500 dark:text-neutral-400">Tools & Platforms</div>
+            </div>
+            <div>
+              <div className="text-3xl md:text-4xl font-light text-neutral-900 dark:text-white mb-2">6+</div>
+              <div className="text-sm text-neutral-500 dark:text-neutral-400">Projects Completed</div>
+            </div>
+            <div>
+              <div className="text-3xl md:text-4xl font-light text-neutral-900 dark:text-white mb-2">3+</div>
+              <div className="text-sm text-neutral-500 dark:text-neutral-400">Years Learning</div>
             </div>
           </div>
-        ))}
+        </div>
       </div>
-    </div>
+    </section>
   )
 }
 

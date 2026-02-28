@@ -6,12 +6,19 @@ import About from "./pages/About"
 import Skills from "./pages/Skills"
 import Projects from "./pages/Projects"
 import Education from "./pages/Education"
-import VideoCV from "./pages/VideoCV"
 import Contact from "./pages/Contact"
 import Footer from "./components/Footer"
 
 function App() {
   const [showScrollTop, setShowScrollTop] = useState(false)
+  const [darkMode, setDarkMode] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('darkMode')
+      if (saved !== null) return JSON.parse(saved)
+      return window.matchMedia('(prefers-color-scheme: dark)').matches
+    }
+    return false
+  })
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +29,17 @@ function App() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+    localStorage.setItem('darkMode', JSON.stringify(darkMode))
+  }, [darkMode])
+
+  const toggleDarkMode = () => setDarkMode(!darkMode)
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -30,8 +48,8 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100">
-      <Navbar />
+    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 transition-colors duration-300">
+      <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       <main>
         <section id="home">
           <Home />
@@ -48,9 +66,6 @@ function App() {
         <section id="education">
           <Education />
         </section>
-        {/* <section id="video-cv">
-          <VideoCV />
-        </section> */}
         <section id="contact">
           <Contact />
         </section>
@@ -61,10 +76,10 @@ function App() {
       {showScrollTop && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 bg-gradient-to-br from-emerald-500 to-blue-500 hover:from-emerald-600 hover:to-blue-600 text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 z-50 animate-fadeInUp"
+          className="fixed bottom-8 right-8 bg-neutral-900 dark:bg-white hover:bg-neutral-800 dark:hover:bg-neutral-100 text-white dark:text-neutral-900 p-3 shadow-medium hover:shadow-elevated transition-all duration-200 z-50 animate-fade-in-up group"
           aria-label="Scroll to top"
         >
-          <ArrowUp className="h-6 w-6" />
+          <ArrowUp className="h-5 w-5 transition-transform group-hover:-translate-y-0.5" />
         </button>
       )}
     </div>
