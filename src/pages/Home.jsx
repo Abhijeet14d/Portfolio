@@ -98,7 +98,7 @@ const Home = () => {
             `}
           >
             <a
-              href="https://docs.google.com/document/d/1uLoG7zSmeMtQ2mIQ9sWcwGKQabZNMflkRyLuvt6t0kg/edit?usp=sharing"
+              href="https://drive.google.com/file/d/1d7uAnlAUPy-seTFyjXT9eqFgPt2BWYy8/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
               className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 font-medium hover:bg-neutral-800 dark:hover:bg-neutral-100 transition-all active:scale-[0.98]"
